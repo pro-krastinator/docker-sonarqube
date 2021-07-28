@@ -38,6 +38,17 @@ RUN set -x \
     && rm sonarqube.zip* \
     && rm -rf $SONARQUBE_HOME/bin/*
 
+# Community Branch plugin
+ADD --chown=10001:10001 https://github.com/mc1arke/sonarqube-community-branch-plugin/releases/download/1.3.0/sonarqube-community-branch-plugin-1.3.0.jar /opt/sonarqube/extensions/plugins/
+ADD --chown=10001:10001 https://github.com/mc1arke/sonarqube-community-branch-plugin/releases/download/1.3.0/sonarqube-community-branch-plugin-1.3.0.jar /opt/sonarqube/lib/common/
+
+# Mutation Analysis results plugin
+ADD --chown=10001:10001 https://github.com/devcon5io/mutation-analysis-plugin/releases/download/v1.5/mutation-analysis-plugin-1.5.jar /opt/sonarqube/extensions/plugins/
+
+# ShellCheck plugin
+ADD --chown=10001:10001 https://github.com/sbaudoin/sonar-shellcheck/releases/download/v2.4.0/sonar-shellcheck-plugin-2.4.0.jar /opt/sonarqube/extensions/plugins/
+
+
 VOLUME "$SONARQUBE_HOME/data"
 
 WORKDIR $SONARQUBE_HOME
